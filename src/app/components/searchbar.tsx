@@ -10,9 +10,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
 	onSearchChange,
 }: SearchBarProps) => {
 
-
-	const [, setIsTyping] = useState(false);
-
 	return (
 		<div className="hero bg-gredient-dark h-400px flex flex-col px-2">
 			<div className="search-box mx-auto my-auto w-full sm:w-full md:w-full lg:w-3/4 xl:w-3/4">
@@ -25,7 +22,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
 						value={searchText}
 						onChange={(e) => {
 							onSearchChange(e.target.value)
-							setIsTyping(e.target.value.length > 0);
 						}} />
 					{searchText && (
 						<span

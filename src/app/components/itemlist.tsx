@@ -12,7 +12,6 @@ const ItemList: React.FC<ItemListProps> = ({ searchText }: ItemListProps) => {
 	const offset = (currentPage - 1) * pageSize;
 
 	const { advocates, resultCount, loading } = useFetchAdvocates("/api/advocates", pageSize, offset);
-
 	const totalPages = Math.ceil((resultCount ?? 0) / pageSize);
 
 	const nextPage = () => {
@@ -42,7 +41,6 @@ const ItemList: React.FC<ItemListProps> = ({ searchText }: ItemListProps) => {
 	) || [];
 
 	return (
-
 		<React.Fragment>
 			<div className="grid grid-cols-7 border border-gray-300 ml-2 mr-2">
 				<div className="font-bold bg-gray-200 p-2 flex justify-center items-center">First Name</div>
