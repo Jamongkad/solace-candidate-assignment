@@ -16,7 +16,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
 	return (
 		<div className="hero bg-gredient-dark h-400px flex flex-col px-2">
 			<div className="search-box mx-auto my-auto w-full sm:w-full md:w-full lg:w-3/4 xl:w-3/4">
-				<form className="flex flex-row" onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}>
+				<div className="flex flex-row">
 					<span
 						className="flex items-center bg-gray-100 rounded rounded-r-none border-0 px-3 font-bold text-grey-100">👥</span>
 					<input
@@ -35,7 +35,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
 								className="bg-gredient-dark hover:bg-gredient-light text-xs text-black font-bold py-3 px-6 rounded" onClick={() => onSearchChange("")}> Clear Search</button>
 						</span>
 					)}
-				</form>
+				</div>
 			</div>
 		</div>
 	);
