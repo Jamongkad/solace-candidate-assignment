@@ -8,6 +8,6 @@ export class AdvocateService {
   }
 
   async find(limit: number, offset: number) {
-    return this.repository.find(limit, offset);
+    return await this.repository.find(limit, offset);
   }
 }

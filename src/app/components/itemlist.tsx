@@ -8,10 +8,10 @@ interface ItemListProps {
 const ItemList: React.FC<ItemListProps> = ({ searchText }: ItemListProps) => {
 
 	const [currentPage, setCurrentPage] = useState(1);
-	const [pageSize, setPageSize] = useState(10);
+	const [pageSize,] = useState(10);
 	const offset = (currentPage - 1) * pageSize;
 
-	const { advocates, resultCount } = useFetchAdvocates("/api/advocates", pageSize, offset);
+	const { advocates, resultCount, loading } = useFetchAdvocates("/api/advocates", pageSize, offset);
 
 	const totalPages = Math.ceil((resultCount ?? 0) / pageSize);
 
@@ -26,7 +26,6 @@ const ItemList: React.FC<ItemListProps> = ({ searchText }: ItemListProps) => {
 			setCurrentPage(currentPage - 1);
 		}
 	};
-
 
 	const filteredItems = advocates && advocates.filter(
 		(advocate: Advocate) => {
@@ -54,23 +53,30 @@ const ItemList: React.FC<ItemListProps> = ({ searchText }: ItemListProps) => {
 				<div className="font-bold bg-gray-200 p-2 flex justify-center items-center">Years of Experience</div>
 				<div className="font-bold bg-gray-200 p-2 flex justify-center items-center">Phone Number</div>
 				<React.Fragment>
-					{filteredItems.map((advocate: Advocate, index: number) => {
-						return (
-							<React.Fragment key={index}>
-								<div className={`p-1 flex justify-center items-center ${colorSwitch(index)}`}>{advocate.firstName}</div>
-								<div className={`p-1 flex justify-center items-center ${colorSwitch(index)}`}>{advocate.lastName}</div>
-								<div className={`p-1 flex justify-center items-center ${colorSwitch(index)}`}>{advocate.city}</div>
-								<div className={`p-1 flex justify-center items-center ${colorSwitch(index)}`}>{advocate.degree}</div>
-								<div className={`p-1 break-words whitespace-normal ${colorSwitch(index)}`}>
-									{advocate.specialties.map((s) => (
-										<p className={`p-1 text-sm`} key={s}>{s}</p>
-									))}
-								</div>
-								<div className={`p-1 flex justify-center items-center ${colorSwitch(index)}`}>{advocate.yearsOfExperience}</div>
-								<div className={`p-1 flex justify-center items-center ${colorSwitch(index)}`}>{advocate.phoneNumber}</div>
-							</React.Fragment>
-						);
-					})}
+					{!loading ?
+						(filteredItems.map((advocate: Advocate, index: number) => {
+							return (
+								<React.Fragment key={index}>
+									<div className={`p-1 flex justify-center items-center ${colorSwitch(index)}`}>{advocate.firstName}</div>
+									<div className={`p-1 flex justify-center items-center ${colorSwitch(index)}`}>{advocate.lastName}</div>
+									<div className={`p-1 flex justify-center items-center ${colorSwitch(index)}`}>{advocate.city}</div>
+									<div className={`p-1 flex justify-center items-center ${colorSwitch(index)}`}>{advocate.degree}</div>
+									<div className={`p-1 break-words whitespace-normal ${colorSwitch(index)}`}>
+										{advocate.specialties.map((s) => (
+											<p className={`p-1 text-sm`} key={s}>{s}</p>
+										))}
+									</div>
+									<div className={`p-1 flex justify-center items-center ${colorSwitch(index)}`}>{advocate.yearsOfExperience}</div>
+									<div className={`p-1 flex justify-center items-center ${colorSwitch(index)}`}>{advocate.phoneNumber}</div>
+								</React.Fragment>
+							)
+						}))
+						: (
+							<div className="p-2 col-span-7 flex justify-center items-center">
+								<div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-700"></div>
+							</div>
+						)
+					}
 				</React.Fragment>
 			</div>
 			<div className="flex items-center pt-6 pb-6 justify-center">

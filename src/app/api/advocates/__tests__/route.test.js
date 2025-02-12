@@ -1,10 +1,8 @@
 /**
  * @jest-environment node
  */
-import { desc } from 'drizzle-orm';
 import { GET } from '../route.ts'
-import { AdvocateService } from '../service/AdvocateService.ts'; // Adjust the import path as necessary
-import { describe } from 'node:test';
+import { AdvocateService } from '../service/AdvocateService.ts';
 
 let mockFind = jest.fn();
 jest.mock('../service/AdvocateService', () => ({

@@ -1,4 +1,4 @@
-import { renderHook, act, waitFor } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 import useFetchAdvocates from "../useFetchAdvocates";
 
 const mockAdvocates = {
@@ -8,6 +8,7 @@ const mockAdvocates = {
 		{ id: 3, name: "Mazda Miata" },
 	]
 }
+
 // Mock fetch function
 global.fetch = jest.fn(() =>
 	Promise.resolve({
@@ -16,11 +17,11 @@ global.fetch = jest.fn(() =>
 	})
 );
 
-const testUrl = "/test/api";
+const testUrl = "/test/api/pikachu";
 
 describe("useFetchAdvocates", () => {
 	afterEach(() => {
-		jest.clearAllMocks(); // Reset fetch mock after each test
+		jest.clearAllMocks(); 
 	});
 
 	it("fetches advocates", async () => {

@@ -11,7 +11,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
 }: SearchBarProps) => {
 
 
-	const [isTyping, setIsTyping] = useState(false);
+	const [, setIsTyping] = useState(false);
 
 	return (
 		<div className="hero bg-gredient-dark h-400px flex flex-col px-2">
