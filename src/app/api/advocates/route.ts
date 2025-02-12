@@ -14,6 +14,6 @@ export async function GET(req: NextRequest) {
 		return Response.json({ data, count });
 
 	} catch (error) {
-		return Response.error();
+		throw new Error(String(error));
 	}
 }

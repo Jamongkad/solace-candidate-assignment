@@ -10,7 +10,6 @@ export class AdvocateRepository {
       .offset(offset); // the number of rows to skip
 
     const resultCount = await db.select({ count: count() }).from(advocates);
-
     return { data, count: resultCount[0].count };
   }
 }

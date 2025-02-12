@@ -11,7 +11,7 @@ jest.mock('../service/AdvocateService', () => ({
   AdvocateService: jest.fn().mockImplementation(() => ({
     find: mockFind
   }))
-})); // Mock the AdvocateService module
+})); // Mock the AdvocateService 
 
 describe('GET /advocates', () => {
   it('should return a list of advocates', async () => {
@@ -53,7 +53,7 @@ describe('GET /advocates', () => {
     try {
       await GET(requestObj);
     } catch (error) {
-      expect(error.message).toBe('Internal Server Error');
+      expect(error.message).toBe('Error: Internal Server Error');
     }
   });
 });
